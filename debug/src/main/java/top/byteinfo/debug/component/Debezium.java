@@ -16,17 +16,19 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+
 @Slf4j
 @Component
 public class Debezium implements Runnable {
 
 
-    final Properties props = Configuration.create().build().asProperties();
-    public void config(){
+    final Properties props = new Properties();
+
+    public void config() {
         props.setProperty("name", "engine");
         props.setProperty("connector.class", "io.debezium.connector.mysql.MySqlConnector");
         props.setProperty("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore");
-        props.setProperty("offset.storage.file.filename", "static/offsets.dat");
+        props.setProperty("offset.storage.file.filename", "debug/src/main/resources/static/offsets.dat");
         props.setProperty("offset.flush.interval.ms", "60000");
         /* begin connector properties */
         props.setProperty("database.hostname", "localhost");
@@ -38,34 +40,29 @@ public class Debezium implements Runnable {
         props.setProperty("database.history",
                 "io.debezium.relational.history.FileDatabaseHistory");
         props.setProperty("database.history.file.filename",
-                "static/dbhistory.dat");
-    }
-
-    private void handleEvent(
-            List<ChangeEvent<String, String>> changeEvents,
-            DebeziumEngine.RecordCommitter<ChangeEvent<String, String>> committer
-    ) {
-        try{
-            for (ChangeEvent<String, String> changeEvent : changeEvents) {
-                committer.markProcessed(changeEvent);
-                log.info(changeEvent.key());
-                log.info(changeEvent.value());
-            }
-            committer.markBatchFinished();
-        }catch (Exception e){
-
-        }
+                "debug/src/main/resources/static/dbhistory.dat");
     }
 
 
-    public void engine(){
+
+
+    public void engine() {
+
 
         DebeziumEngine<ChangeEvent<String, String>> engine = DebeziumEngine.create(Json.class)
                 .using(props)
+                .notifying((records, committer) -> {
+                            for (ChangeEvent<String,String> record : records) {
+                                log.info("\n"+record.key()+"\n"+record.value());
+                                committer.markProcessed(record);
+                            }
+                            committer.markBatchFinished();
+                        }
+                )
                 .using(OffsetCommitPolicy.always())
-                .notifying(this::handleEvent)
                 .build();
         engine.run();
+//        debeziumEngine.run();
     }
 
 
@@ -78,6 +75,7 @@ public class Debezium implements Runnable {
 
     public static void main(String[] args) {
         Debezium debezium = new Debezium();
+
         debezium.run();
     }
 }
