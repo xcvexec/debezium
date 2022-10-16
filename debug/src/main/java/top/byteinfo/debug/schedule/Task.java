@@ -17,6 +17,6 @@ public class Task {
 
     @Scheduled(fixedDelay = 1L)
     public void task(){
-
+        debezium.run();
     }
 }
