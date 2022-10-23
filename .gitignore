@@ -36,3 +36,5 @@ gen/
 jenkins-jobs/docker/rhel_kafka/plugins
 jenkins-jobs/docker/artifact-server/plugins
 /debug/.mvn/
+/debezium-debug/.mvn/
+/debezium-debug/HELP.md
