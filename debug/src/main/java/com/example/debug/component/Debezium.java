@@ -1,4 +1,4 @@
-package com.example.debeziumdebug.component;
+package com.example.debug.component;
 
 import io.debezium.engine.ChangeEvent;
 import io.debezium.engine.DebeziumEngine;

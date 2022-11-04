@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>debezium-debug</artifactId>
+    <artifactId>debug</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>debezium-debug</name>
-    <description>debezium-debug</description>
+    <name>debug</name>
+    <description>debug</description>
     <properties>
         <java.version>17</java.version>
     </properties>

@@ -1,10 +1,10 @@
-package com.example.debeziumdebug;
+package com.example.debug;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DebeziumDebugApplicationTests {
+class DebugApplicationTests {
 
     @Test
     void contextLoads() {
