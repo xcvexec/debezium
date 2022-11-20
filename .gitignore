@@ -16,7 +16,7 @@ activemq-data/
 build/
 debezium-ddl-parser/gen
 deploy/
-target/
+**/**/target/
 mods/
 *.swp
 .tags
