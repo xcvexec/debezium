@@ -25,3 +25,7 @@ phantomjsdriver.log
 generated-sources/
 
 /state/
+/debug/.mvn/
+/debug/mvnw.cmd
+/debug/mvnw
+/debug/.gitignore
