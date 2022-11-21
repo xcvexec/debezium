@@ -18,7 +18,7 @@ public class Debezium implements Runnable{
             .with("offset.storage.file.filename", "debug/src/main/resources/static/storage/offset.dat")
             .with("offset.flush.interval.ms", 60000)
             /* begin connector properties */
-            .with("database.hostname", "192.168.1.101")
+            .with("database.hostname", "localhost")
             .with("database.port", 3306)
             .with("database.user", "root")
             .with("database.password", "root")
