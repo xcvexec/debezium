@@ -122,9 +122,6 @@
         <module>debezium-core</module>
         <module>debezium-embedded</module>
         <module>debezium-connector-mysql</module>
-        <module>debezium-connector-postgres</module>
-        <module>debezium-connector-mongodb</module>
-        <module>debezium-connector-sqlserver</module>
         <module>debezium-microbenchmark</module>
     </modules>
 
