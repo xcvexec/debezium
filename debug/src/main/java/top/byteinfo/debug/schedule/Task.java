@@ -5,6 +5,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import top.byteinfo.debug.component.Debezium;
 
+import java.util.concurrent.TimeUnit;
+
 @Component
 public class Task {
     final
@@ -15,7 +17,7 @@ public class Task {
         this.debezium = debezium;
     }
 
-    @Scheduled(fixedDelay = 1L)
+    @Scheduled(fixedDelay = 1L,timeUnit = TimeUnit.DAYS)
     public void task(){
         debezium.run();
     }
